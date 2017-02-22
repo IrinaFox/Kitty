@@ -1,21 +1,42 @@
 'use strict';
 
 function Kitty () {
-    var empty = false;
+    var empty = 5,
+        listeners = {
+          empty: []
+        };
 
-    this.on = function (condition, callback) {
+    this.on = function (eventName, callback) {
+        if (!listeners.hasOwnProperty(eventName)) {
+            listeners[eventName] = [];
+        }
 
+        listeners[eventName].push(callback);
     };
 
     this.eatFish = function () {
-        empty = false;
-        //function
+        console.log('eating');
+
+        empty += 3;
     };
 
     this.run = function () {
-        empty = true;
-        //function
+        console.log('running');
+
+        empty --;
+
+        if (empty <= 0) {
+            triggerEvent('empty');
+        }
     };
+
+    function triggerEvent (eventName) {
+        if (listeners.hasOwnProperty(eventName)) {
+            listeners[eventName].forEach(function (callback) {
+                callback();
+            });
+        }
+    }
 
     return this;
 }

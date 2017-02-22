@@ -12,6 +12,13 @@ window.addEventListener('load', function () {
     });
 
     lavrentiy.run();
+    lavrentiy.run();
+    lavrentiy.run();
+    lavrentiy.run();
+    lavrentiy.run();
+    lavrentiy.run();
+    lavrentiy.run();
+
     lavrentiy.eatFish();
 
 }, false);
